@@ -56,7 +56,7 @@ The arguments are the same than `append_items!` function but using the internal 
 
 """
 function index!(index::SearchGraph, context::SearchGraphContext)
-    @assert length(index) == 0 && length(index.db) > 0
+    # @assert length(index) == 0 && length(index.db) > 0
     context.parallel_block == 1 && return _sequential_append_items_loop!(index, context)
 
     m = 0
@@ -107,7 +107,7 @@ function _parallel_append_items_loop!(index::SearchGraph, context::SearchGraphCo
 
         # apply callbacks
         execute_callbacks(index, context, sp, ep)
-        context.logger !== nothing && LOG(context.logger, append_items!, index, sp, ep, n)
+        # context.logger !== nothing && LOG(context.logger, append_items!, index, sp, ep, n)
         sp = ep + 1
     end
 end
@@ -174,6 +174,6 @@ Arguments:
         execute_callbacks(index, context)
     end
     
-    context.logger !== nothing && LOG(context.logger, push_item!, index, n)
+    # context.logger !== nothing && LOG(context.logger, push_item!, index, n)
     index
 end

@@ -171,8 +171,8 @@ function execute_callback(index::SearchGraph, ctx::SearchGraphContext, opt::KCen
     k = min(ceil(Int, opt.kfun(n)), m-1)
 
     D = SubDatabase(database(index), s)
-    A = fft(distance(index), D, k)
-    @show n, m, k, length(A.centers)
+    A = fft(distance(index), D, k; verbose=false)
+    # @show n, m, k, length(A.centers)
     resize!(index.hints, k)
     index.hints .= D.map[A.centers]
 end
